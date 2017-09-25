@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.anand.cache.domain.CacheMissException;
 import com.anand.cache.domain.EVCachePostOffice;
 import com.anand.common.model.PostalLocation;
-import com.anand.pin.client.PinClient;
+//import com.anand.pin.client.PinClient;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.netflix.evcache.EVCacheException;
@@ -23,8 +23,8 @@ public class QuickPinController {
 	@Autowired
 	private EVCachePostOffice cacheDataStore;
 
-	@Autowired
-	private PinClient pinClient;
+	//@Autowired
+	//private PinClient pinClient;
 
 	@RequestMapping(method = RequestMethod.GET, value = "/postal/search/{pin}")
 	public PostalLocation getPinLocation(@PathVariable(value = "pin") String pinCode)
@@ -45,11 +45,12 @@ public class QuickPinController {
 	
 	private PostalLocation fetchFromDB(String pinCode) {
 		System.out.println("Cache miss");
-		PostalLocation location = pinClient.getPinCode(pinCode);
-		if (location != null) {
-			saveToCache(pinCode, location);
-		}
-		return pinClient.getPinCode(pinCode);
+		//PostalLocation location = pinClient.getPinCode(pinCode);
+		//if (location != null) {
+			//saveToCache(pinCode, location);
+		//}
+		//return pinClient.getPinCode(pinCode);
+		return new PostalLocation();
 	}
 	
 
